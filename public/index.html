@@ -98,7 +98,7 @@
 </head>
 
 <body>
-  <p id="load">Firebase SDK Loading&hellip;</p>
+  <p id="load">Mokki application loading&hellip;</p>
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -131,27 +131,26 @@
         let app = firebase.app();
         angular.bootstrap(document, ['mokkiApp']);
         let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-        document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
+        $("#load").css("display", "none");
+        //document.getElementById('load').style() = `Firebase SDK loaded with ${features.join(', ')}`;
       } catch (e) {
         console.error(e);
-        document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
+        //document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
       }
     });
   </script>
   <div id="inventorycontent" ng-controller="InventoryCtrl" ng-show="data" class="ng-cloak">
     <table>
-    <th>Elintarvikkeet</th>
-      <tr ng-repeat="item in data.food">
-      <td>{{ item.name }} </td>
-      <td><input type="checkbox"/> </td>
+      <th>Elintarvikkeet</th><th style="text-align:right;">{{ data.food.length }}</th>
+      <tr ng-repeat="item in data.food | orderBy:'name'">
+        <td>{{ item.name }} </td>
+        <td><input type="checkbox" /> </td>
       </tr>
-    </table>
-    <table>
-    <th>Perustarvikkeet</th>
-    <tr ng-repeat="item in data.supplies">  
-      <td> {{ item.name }} </td>
-      <td><input type="checkbox"/> </td>
-    </tr>
+      <th>Perustarvikkeet</th><th style="text-align:right;">{{ data.supplies.length }}</th>
+      <tr ng-repeat="item in data.supplies | orderBy:'name'">
+        <td> {{ item.name }} </td>
+        <td><input type="checkbox" /> </td>
+      </tr>
     </table>
   </div>
 </body>
