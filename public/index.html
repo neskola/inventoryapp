@@ -145,12 +145,14 @@
   </script>
   <div id="inventorycontent" ng-controller="InventoryCtrl" ng-show="data" class="ng-cloak">
     <table class="table table-striped">
-      <th>Elintarvikkeet</th><th class="text-right"><span id="foodcounter" class="label">{{ data.food.length }}</span></th>
+      <th>Elintarvikkeet</th>
+      <th class="text-right"><span id="foodcounter" class="label">{{ data.food.length }}</span></th>
       <tr ng-repeat="item in data.food | orderBy:'name'">
         <td>{{ item.name }} </td>
         <td class="text-right"><input type="checkbox" /> </td>
       </tr>
-      <th>Perustarvikkeet</th><th class="text-right"><span id="suppliescounter" class="label">{{ data.supplies.length }}</span></th>
+      <th>Perustarvikkeet</th>
+      <th class="text-right"><span id="suppliescounter" class="label">{{ data.supplies.length }}</span></th>
       <tr ng-repeat="item in data.supplies | orderBy:'name'">
         <td> {{ item.name }} </td>
         <td class="text-right"><input type="checkbox" /> </td>
