@@ -1,0 +1,27 @@
+{
+  "name": "mokki-inventaario",
+  "authors": [
+    "neskola@gmail.com"
+  ],
+  "description": "Application to help checking out after cottage visit.",
+  "main": "public/index.html",
+  "keywords": [
+    "checkout",
+    "inventory",
+    "cottage"
+  ],
+  "license": "MIT",
+  "homepage": "https://mokki-inventaario.firebaseapp.com/",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.4",
+    "bootstrap": "^3.3.7"
+  }
+}

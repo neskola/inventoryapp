@@ -1,11 +1,53 @@
 {
     "inventory": {
-        "item": [
+        "food": [
             {
                 "name": "kahvi",
                 "unit": "kpl",
                 "value": ""
             },
+            {
+                "name": "voi",
+                "unit": "kpl",
+                "value": ""
+            },
+            {
+                "name": "kanamunia",
+                "unit": "kpl",
+                "value": ""
+            },
+            {
+                "name": "sinappi",
+                "unit": "tuubia",
+                "value": ""
+            },
+            {
+                "name": "ketsuppi",
+                "unit": "pullo",
+                "value": ""
+            },
+            {
+                "name": "suola",
+                "unit": "pakettia",
+                "value": ""
+            },
+            {
+                "name": "mustapippuri",
+                "unit": "mylly",
+                "value": ""
+            },
+            {
+                "name" : "oliiviöljy",
+                "unit" : "pullo",
+                "value" : ""
+            },
+            {
+                "name" : "ruokaöljy",
+                "unit" : "pullo",
+                "value" : ""
+            }
+        ],
+        "supplies": [
             {
                 "name": "wc-paperi",
                 "unit": "rullaa",
@@ -17,9 +59,14 @@
                 "value": ""
             },
             {
-                "name": "talous-paperi",
-                "unit": "rullaa",
+                "name": "sytytyspalat",
+                "unit": "kpl",
                 "value": ""
+            },
+            {
+                "name" : "polttopuut",
+                "unit" : "kpl",
+                "value" : ""
             }
         ]
     },
@@ -30,12 +77,20 @@
                 "on": "false"
             },
             {
-                "name": "sauna",
-                "on": "false"
+                "name" : "kahvinkeitin",
+                "on" : "false"
             },
             {
                 "name": "patterit",
                 "on": "false"
+            },
+            {
+                "name" : "tv",
+                "on" : "false"
+            },
+            {
+                "name" : "wifi",
+                "on" : "false"
             }
         ]
     },
@@ -44,7 +99,29 @@
             {
                 "name": "saunan tuhkat",
                 "cleaned": "false"
+            },
+            {
+                "name" : "huussi",
+                "cleaned" : "false"
             }
         ]
+    },
+    "users" : {
+        "niki" : {
+            "lastvisit" : "",
+            "visits" : ""
+        },
+        "ile" : {
+            "lastvisit" : "",
+            "visits" : ""
+        }, 
+        "pedro" : {
+            "lastvisit" : "",
+            "visits" : ""
+        },
+        "saku" : {
+            "lastvisit" : "",
+            "visits" : ""
+        }
     }
 }

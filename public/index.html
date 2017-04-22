@@ -45,7 +45,12 @@
         // // The Firebase SDK is initialized and available here!
         //
         // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('data', snapshot => { });
+        firebase.database().ref('/inventory/').on('value', snapshot => { 
+          console.log("Inventory data", snapshot.val());
+        },
+        error => {
+          console.error("Error while reading inventory", error);
+        });
         // firebase.messaging().requestPermission().then(() => { });
         // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
         //
