@@ -132,6 +132,10 @@
         angular.bootstrap(document, ['mokkiApp']);
         let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
         $("#load").css("display", "none");
+        var foodChecked = 0;
+        var suppliesChecked = 0;
+        $("#foodcounter").addClass("label-danger");
+        $("#suppliescounter").addClass("label-danger");
         //document.getElementById('load').style() = `Firebase SDK loaded with ${features.join(', ')}`;
       } catch (e) {
         console.error(e);
@@ -140,16 +144,16 @@
     });
   </script>
   <div id="inventorycontent" ng-controller="InventoryCtrl" ng-show="data" class="ng-cloak">
-    <table>
-      <th>Elintarvikkeet</th><th style="text-align:right;">{{ data.food.length }}</th>
+    <table class="table table-striped">
+      <th>Elintarvikkeet</th><th class="text-right"><span id="foodcounter" class="label">{{ data.food.length }}</span></th>
       <tr ng-repeat="item in data.food | orderBy:'name'">
         <td>{{ item.name }} </td>
-        <td><input type="checkbox" /> </td>
+        <td class="text-right"><input type="checkbox" /> </td>
       </tr>
-      <th>Perustarvikkeet</th><th style="text-align:right;">{{ data.supplies.length }}</th>
+      <th>Perustarvikkeet</th><th class="text-right"><span id="suppliescounter" class="label">{{ data.supplies.length }}</span></th>
       <tr ng-repeat="item in data.supplies | orderBy:'name'">
         <td> {{ item.name }} </td>
-        <td><input type="checkbox" /> </td>
+        <td class="text-right"><input type="checkbox" /> </td>
       </tr>
     </table>
   </div>
