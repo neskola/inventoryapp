@@ -1,0 +1,50 @@
+{
+    "inventory": {
+        "item": [
+            {
+                "name": "kahvi",
+                "unit": "kpl",
+                "value": ""
+            },
+            {
+                "name": "wc-paperi",
+                "unit": "rullaa",
+                "value": ""
+            },
+            {
+                "name": "talous-paperi",
+                "unit": "rullaa",
+                "value": ""
+            },
+            {
+                "name": "talous-paperi",
+                "unit": "rullaa",
+                "value": ""
+            }
+        ]
+    },
+    "applicances": {
+        "unit": [
+            {
+                "name": "jääkaappi",
+                "on": "false"
+            },
+            {
+                "name": "sauna",
+                "on": "false"
+            },
+            {
+                "name": "patterit",
+                "on": "false"
+            }
+        ]
+    },
+    "cleaning": {
+        "place": [
+            {
+                "name": "saunan tuhkat",
+                "cleaned": "false"
+            }
+        ]
+    }
+}
