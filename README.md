@@ -1,0 +1,1 @@
+Inventory application to help reporting cottage status before leaving.
