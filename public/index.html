@@ -103,39 +103,32 @@
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       var app = angular.module("mokkiApp", ["firebase"]);
-      app.controller("InventoryCtrl", function ($scope, $firebaseObject) {
+      app.value('counters', {
+        foodcounter: 0,
+        suppliescounter: 0
+      });
+
+      app.controller("InventoryCtrl", function ($scope, $firebaseObject, counters) {
         var ref = firebase.database().ref().child("inventory/");
         // download the data into a local object
         var syncObject = $firebaseObject(ref);
         // synchronize the object with a three-way data binding
         // click on `index.html` above to see it used in the DOM!
         syncObject.$bindTo($scope, "data");
-        console.log("InventoryCtrl found", syncObject);
+        console.log("InventoryCtrl found", syncObject, counters);
+        $scope.counters = counters;
       });
-      // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-      // // The Firebase SDK is initialized and available here!
-      //
-      // firebase.auth().onAuthStateChanged(user => { });
-      //firebase.database().ref('/inventory/').on('value', snapshot => {
-      //  console.log("Inventory data", snapshot.val());
-      //},
-      //  error => {
-      //    console.error("Error while reading inventory", error);
-      //  });
-      // firebase.messaging().requestPermission().then(() => { });
-      // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-      //
-      // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-
+ 
       try {
-        let app = firebase.app();
+        let firebaseapp = firebase.app();
+
         angular.bootstrap(document, ['mokkiApp']);
-        let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
+        let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof firebaseapp[feature] === 'function');
         $("#load").css("display", "none");
-        var foodChecked = 0;
-        var suppliesChecked = 0;
+
         $("#foodcounter").addClass("label-danger");
         $("#suppliescounter").addClass("label-danger");
+
         //document.getElementById('load').style() = `Firebase SDK loaded with ${features.join(', ')}`;
       } catch (e) {
         console.error(e);
@@ -146,16 +139,16 @@
   <div id="inventorycontent" ng-controller="InventoryCtrl" ng-show="data" class="ng-cloak">
     <table class="table table-striped">
       <th>Elintarvikkeet</th>
-      <th class="text-right"><span id="foodcounter" class="label">{{ data.food.length }}</span></th>
+      <th class="text-right"><span id="foodcounter" class="label">{{ counters.foodcounter }}</span></th>
       <tr ng-repeat="item in data.food | orderBy:'name'">
         <td>{{ item.name }} </td>
-        <td class="text-right"><input type="checkbox" /> </td>
+        <td class="text-right"><input id="{{ $index }}" type="checkbox" ng-click="" /> </td>
       </tr>
       <th>Perustarvikkeet</th>
-      <th class="text-right"><span id="suppliescounter" class="label">{{ data.supplies.length }}</span></th>
+      <th class="text-right"><span id="suppliescounter" class="label">{{ counters.suppliescounter }}</span></th>
       <tr ng-repeat="item in data.supplies | orderBy:'name'">
         <td> {{ item.name }} </td>
-        <td class="text-right"><input type="checkbox" /> </td>
+        <td class="text-right"><input id="{{ $index }}" type="checkbox" ng-click="" /> </td>
       </tr>
     </table>
   </div>
