@@ -4,7 +4,8 @@
   "dependencies": {
     "firebase-admin": "~4.1.2",
     "firebase-functions": "^0.5",
-    "universal-analytics": "^0.4.13"
+    "universal-analytics": "^0.4.13",
+    "uuid": "^3.0.1"
   },
   "private": true
 }
