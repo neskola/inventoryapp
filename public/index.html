@@ -62,6 +62,8 @@
   <p id="load">Mokki application loading&hellip;</p>
 
   <script>
+    var functionsUrl = "https://us-central1-mokki-inventaario.cloudfunctions.net/";
+
     function click(element) {
       console.log("clicked on element", element);
     }
@@ -75,11 +77,22 @@
         valuesJson.push(item);
 
       });
-      console.log("Values", valuesJson);
+      var http = new XMLHttpRequest();
+      http.open("POST", functionsUrl + "/store");
 
-    }
+      http.setRequestHeader("Content-type", "text/plain");
+
+      http.onreadystatechange = function () {
+        if (http.status == 200) {
+          console.log("response ok", http.status);
+        } else {
+          console.error("response status", http.status);
+        }
+      }
+      http.send(JSON.stringify(valuesJson));
+    };
+
     document.addEventListener('DOMContentLoaded', function () {
-      var functionsUrl = "https://us-central1-mokki-inventaario.cloudfunctions.net/";
       var app = angular.module("mokkiApp", ["firebase"]);
       app.value('counters', {
         foodcounter: 0,
@@ -95,6 +108,26 @@
         syncObject.$bindTo($scope, "data");
         console.log("InventoryCtrl found", syncObject, counters);
         $scope.counters = counters;
+      });
+
+      app.controller("StatusCtrl", function ($scope, $firebaseObject) {
+        var ref = firebase.database().ref().child("status/");
+        // download the data into a local object
+        var syncObject = $firebaseObject(ref);
+        // synchronize the object with a three-way data binding
+        // click on `index.html` above to see it used in the DOM!
+        syncObject.$bindTo($scope, "data");
+        console.log("StatusCtrl found", syncObject);
+      });
+
+      app.controller("UserCtrl", function ($scope, $firebaseObject) {
+        var ref = firebase.database().ref().child("users/");
+        // download the data into a local object
+        var syncObject = $firebaseObject(ref);
+        // synchronize the object with a three-way data binding
+        // click on `index.html` above to see it used in the DOM!
+        syncObject.$bindTo($scope, "data");
+        console.log("UserCtrl found", syncObject);
       });
 
       try {
@@ -114,6 +147,14 @@
       }
     });
   </script>
+
+  <div id="usercontent" ng-controller="UserCtrl" ng-show="data" class="ng-cloak">
+    <label>Kuittaaja</label>
+    <select name="singleSelect">
+         <option ng-repeat="user in data" value="{{ user.name }}">{{user.name}}</option>
+    </select>
+  </div>
+
   <div id="inventorycontent" ng-controller="InventoryCtrl" ng-show="data" class="ng-cloak">
     <table class="table table-striped">
       <th>Elintarvikkeet</th>
@@ -134,6 +175,16 @@
     </div>
 
   </div>
-</body>
+  <div id="statuscontent" ng-controller="StatusCtrl" ng-show="data" class="ng-cloak">
+    <table class="table table-striped">
+      <th>Edelliset kuittaukset</th>
+      <th class="text-right"><span id="checkouts" class="label"></span></th>
+       <tr ng-repeat="item in data">
+        <td>{{ item }} </td>
+        <td class="text-right">{{ item.value }}</td>
+      </tr> 
+    </table>
+    </div>
+  </body>
 
 </html>
