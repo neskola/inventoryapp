@@ -3,6 +3,8 @@ const admin = require('firebase-admin');
 const uuidV4 = require('uuid/v4');
 const uuidV1 = require('uuid/v1');
 
+var itemHashCache = {};
+
 var config = {
     "apiKey": "AIzaSyCKF7f8gco-fY4zZA1OVgXQLKKDXPijJJ8",
     "authDomain": "mokki-inventaario.firebaseapp.com",
@@ -59,16 +61,17 @@ function setCors(res) {
     res.set("Access-Control-Allow-Headers", "Content-Type");
 }
 
-function findItemWithId(id) {
+function getInventoryItems() {
     var inventoryref = admin.database().ref("/inventory/");
     inventoryref.once("value", function (snapshot) {
         var foundItem = undefined;
-        if (snapshot.val() !== null) {
-            foundItem = snapshot.val().food.find(item => item.id === id);
-            console.log("found item", item, id);
+        if (snapshot.val() !== undefined) {
+            let foodItems = snapshot.val().food;
+            var output = Object.keys(foodItems).map(function (key) {
+                return { uuid: foodItems[key].uuid, item: foodItems[key] };
+            });
+            console.log("map as array", output);
         }
-        if (!foundItem)
-            console.info("No item with id %s found", id);
         return foundItem;
     }, function (error) {
         console.error("Error while reading inventory", error);
@@ -148,17 +151,15 @@ exports.store = functions.https.onRequest((req, res) => {
     receivedData.user = req.query.user;
     let newUUID = uuidV1();
     receivedData.timestamp = Date.now();
+    var invetoryItems = getInventoryItems();
     for (index in receivedData.items) {
-        foundItem = findItemWithId(receivedData.items[index].id);
-        if (foundItem !== undefined) {
-            item.name = foundItem.name;
-        }
+        
     }
     var saveref = admin.database().ref("/status/").child(newUUID).set(receivedData, function (error) {
         if (error) {
             console.error("Failed to store received data to /store/" + newUUID, error);
             res.status(500).send(error);
         }
-        res.status(200).send(receivedData);   
+        res.status(200).send(receivedData);
     });
 });
