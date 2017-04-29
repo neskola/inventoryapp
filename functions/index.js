@@ -59,6 +59,23 @@ function setCors(res) {
     res.set("Access-Control-Allow-Headers", "Content-Type");
 }
 
+function findItemWithId(id) {
+    var inventoryref = admin.database().ref("/inventory/");
+    inventoryref.once("value", function (snapshot) {
+        var foundItem = undefined;
+        if (snapshot.val() !== null) {
+            foundItem = snapshot.val().food.find(item => item.id === id);
+            console.log("found item", item, id);
+        }
+        if (!foundItem)
+            console.info("No item with id %s found", id);
+        return foundItem;
+    }, function (error) {
+        console.error("Error while reading inventory", error);
+        return undefined;
+    });
+}
+
 exports.resetItemIds = functions.https.onRequest((req, res) => {
     setCors(res);
     //    var receivedData = JSON.parse(req.body);
@@ -127,15 +144,21 @@ exports.store = functions.https.onRequest((req, res) => {
 
     var receivedData = JSON.parse(req.body);
 
-    console.log("received data", receivedData);
+    console.log("received data", receivedData, req.query.user);
+    receivedData.user = req.query.user;
     let newUUID = uuidV1();
     receivedData.timestamp = Date.now();
+    for (index in receivedData.items) {
+        foundItem = findItemWithId(receivedData.items[index].id);
+        if (foundItem !== undefined) {
+            item.name = foundItem.name;
+        }
+    }
     var saveref = admin.database().ref("/status/").child(newUUID).set(receivedData, function (error) {
         if (error) {
             console.error("Failed to store received data to /store/" + newUUID, error);
             res.status(500).send(error);
         }
+        res.status(200).send(receivedData);   
     });
-
-    res.status(200).send(receivedData);
 });

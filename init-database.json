@@ -1,1 +1,236 @@
-{"appliances":{"unit":[{"name":"jääkaappi","on":"false","uuid":"074c3776-8d70-4b20-acda-3f1a44103f11"},{"name":"kahvinkeitin","on":"false","uuid":"97fe12f8-9c43-4c56-b027-ff5186b0cc34"},{"name":"patterit","on":"false","uuid":"fc92c817-f736-486d-9a1d-e79ade9a1fbe"},{"name":"tv","on":"false","uuid":"cfbc5ab7-d964-476d-8e4d-41f6d19d51ae"},{"name":"wifi","on":"false","uuid":"616afe5f-52d3-4944-b6e8-b681c516303b"}]},"cleaning":{"place":[{"cleaned":"false","name":"saunan tuhkat","uuid":"57cb0ae6-ba42-4c37-8bc9-790b2a6b89e1"},{"cleaned":"false","name":"huussi","uuid":"933dc503-f38c-4f30-bd46-f73dd8583e99"}]},"inventory":{"food":[{"name":"kahvi","unit":"kpl","uuid":"0de8b889-10c6-48b4-bd79-a5ba2d8f367f","value":""},{"name":"voi","unit":"kpl","uuid":"a9930830-f3c9-451d-ae25-2c1ebb5c3698","value":""},{"name":"kanamunia","unit":"kpl","uuid":"882a0ea5-5a5d-4293-a950-852ab0d75752","value":""},{"name":"sinappi","unit":"tuubia","uuid":"568a0ca6-745d-432b-9195-325d61aa8daf","value":""},{"name":"ketsuppi","unit":"pullo","uuid":"663efea2-0c9f-4cce-b2f3-67025cee0372","value":""},{"name":"suola","unit":"pakettia","uuid":"4d533ee4-d265-482d-9874-25902abd4760","value":""},{"name":"mustapippuri","unit":"mylly","uuid":"7910fca9-2085-494e-942f-038b70f3bc11","value":""},{"name":"oliiviöljy","unit":"pullo","uuid":"ef68d094-3f4e-4c23-ae6f-1e68e9778fe7","value":""},{"name":"ruokaöljy","unit":"pullo","uuid":"90d01b5b-f29d-4c3a-8e7b-03ead643ae3e","value":""}],"supplies":[{"name":"wc-paperi","unit":"rullaa","uuid":"72091dde-0552-4938-a748-592227d99a9f","value":""},{"name":"talous-paperi","unit":"rullaa","uuid":"7ca60a67-66f8-4193-9fb1-ef9d638ecce8","value":""},{"name":"sytytyspalat","unit":"kpl","uuid":"a879052b-f209-4d26-a8c7-e74e8f345439","value":""},{"name":"polttopuut","unit":"kpl","uuid":"262846c7-501b-479e-8bc8-f225b3556f36","value":""}]},"users":{"ile":{"lastvisit":"","name":"ile","visits":""},"ipu":{"lastvisit":"","name":"ipu","visits":""},"krisse":{"lastvisit":"","name":"krisse","visits":""},"niina":{"lastvisit":"","name":"niina","visits":""},"niki":{"lastvisit":"","name":"niki","visits":""},"otto":{"lastvisit":"","name":"otto","visits":""},"pedro":{"lastvisit":"","name":"pedro","visits":""},"saku":{"lastvisit":"","name":"saku","visits":""},"wilma":{"lastvisit":"","name":"wilma","visits":""}}}
+{
+    "appliances": {
+        "unit": [
+            {
+                "name": "jääkaappi",
+                "on": "false",
+                "uuid": "074c3776-8d70-4b20-acda-3f1a44103f11"
+            },
+            {
+                "name": "kahvinkeitin",
+                "on": "false",
+                "uuid": "97fe12f8-9c43-4c56-b027-ff5186b0cc34"
+            },
+            {
+                "name": "patterit",
+                "on": "false",
+                "uuid": "fc92c817-f736-486d-9a1d-e79ade9a1fbe"
+            },
+            {
+                "name": "tv",
+                "on": "false",
+                "uuid": "cfbc5ab7-d964-476d-8e4d-41f6d19d51ae"
+            },
+            {
+                "name": "wifi",
+                "on": "false",
+                "uuid": "616afe5f-52d3-4944-b6e8-b681c516303b"
+            }
+        ]
+    },
+    "cleaning": {
+        "place": [
+            {
+                "cleaned": "false",
+                "name": "saunan tuhkat",
+                "uuid": "57cb0ae6-ba42-4c37-8bc9-790b2a6b89e1"
+            },
+            {
+                "cleaned": "false",
+                "name": "huussi",
+                "uuid": "933dc503-f38c-4f30-bd46-f73dd8583e99"
+            }
+        ]
+    },
+    "inventory": {
+        "food": [
+            {
+                "name": "kahvi",
+                "unit": "kpl",
+                "uuid": "0de8b889-10c6-48b4-bd79-a5ba2d8f367f",
+                "value": ""
+            },
+            {
+                "name": "voi",
+                "unit": "kpl",
+                "uuid": "a9930830-f3c9-451d-ae25-2c1ebb5c3698",
+                "value": ""
+            },
+            {
+                "name": "kanamunia",
+                "unit": "kpl",
+                "uuid": "882a0ea5-5a5d-4293-a950-852ab0d75752",
+                "value": ""
+            },
+            {
+                "name": "sinappi",
+                "unit": "tuubia",
+                "uuid": "568a0ca6-745d-432b-9195-325d61aa8daf",
+                "value": ""
+            },
+            {
+                "name": "ketsuppi",
+                "unit": "pullo",
+                "uuid": "663efea2-0c9f-4cce-b2f3-67025cee0372",
+                "value": ""
+            },
+            {
+                "name": "suola",
+                "unit": "pakettia",
+                "uuid": "4d533ee4-d265-482d-9874-25902abd4760",
+                "value": ""
+            },
+            {
+                "name": "mustapippuri",
+                "unit": "mylly",
+                "uuid": "7910fca9-2085-494e-942f-038b70f3bc11",
+                "value": ""
+            },
+            {
+                "name": "oliiviöljy",
+                "unit": "pullo",
+                "uuid": "ef68d094-3f4e-4c23-ae6f-1e68e9778fe7",
+                "value": ""
+            },
+            {
+                "name": "ruokaöljy",
+                "unit": "pullo",
+                "uuid": "90d01b5b-f29d-4c3a-8e7b-03ead643ae3e",
+                "value": ""
+            }
+        ],
+        "supplies": [
+            {
+                "name": "wc-paperi",
+                "unit": "rullaa",
+                "uuid": "72091dde-0552-4938-a748-592227d99a9f",
+                "value": ""
+            },
+            {
+                "name": "talous-paperi",
+                "unit": "rullaa",
+                "uuid": "7ca60a67-66f8-4193-9fb1-ef9d638ecce8",
+                "value": ""
+            },
+            {
+                "name": "sytytyspalat",
+                "unit": "kpl",
+                "uuid": "a879052b-f209-4d26-a8c7-e74e8f345439",
+                "value": ""
+            },
+            {
+                "name": "polttopuut",
+                "unit": "kpl",
+                "uuid": "262846c7-501b-479e-8bc8-f225b3556f36",
+                "value": ""
+            },
+            {
+                "name": "leivinpaperi",
+                "unit": "kpl",
+                "uuid": "44450c7c-0b03-4fb1-a668-db4000536d21",
+                "value": ""
+            },
+            {
+                "name": "folio",
+                "unit": "kpl",
+                "uuid": "c7a78c4a-8830-46ce-8f30-4d6a9ea2c99b",
+                "value": ""
+            },
+            {
+                "name": "kelmu",
+                "unit": "kpl",
+                "uuid": "5cf07d25-e91a-469d-bfe3-79084b3e9828",
+                "value": ""
+            },
+            {
+                "name": "astianpesuaine",
+                "unit": "kpl",
+                "uuid": "ac0ffdfb-338d-4a73-a662-3e1b75f939ec",
+                "value": ""
+            },
+            {
+                "name": "desifiointipyyhkeitä",
+                "unit": "kpl",
+                "uuid": "cd3b0408-01e1-4149-842f-9da9276e5514",
+                "value": ""
+            },
+            {
+                "name": "AA - paristoja",
+                "unit": "kpl",
+                "uuid": "df0e7378-2373-4b80-9c33-43f47b5d1f83",
+                "value": ""
+            },
+            {
+                "name": "AAA - paristoja",
+                "unit": "kpl",
+                "uuid": "6a815cf8-a08e-424d-bddf-42e6990a548a",
+                "value": ""
+            },
+            {
+                "name": "Tulitikut",
+                "unit": "kpl",
+                "uuid" : "5ecd6fdf-adbd-41d9-98e5-27fba130b440",
+                "value": ""
+            },
+            {
+                "name": "Pelikortit",
+                "unit": "kpl",
+                "uuid" : "70515c3f-8f33-48be-b208-11c715ebd384",
+                "value": ""
+            },
+            {
+                "name": "Ensi - ja viimeapuvälineet",
+                "unit": "kpl",
+                "uuid" : "29bd5916-a3c3-4807-bf24-e42b78a2c5b4",
+                "value": ""
+            }
+        ]
+    },
+    "users": {
+        "ile": {
+            "lastvisit": "",
+            "name": "ile",
+            "visits": ""
+        },
+        "ipu": {
+            "lastvisit": "",
+            "name": "ipu",
+            "visits": ""
+        },
+        "krisse": {
+            "lastvisit": "",
+            "name": "krisse",
+            "visits": ""
+        },
+        "niina": {
+            "lastvisit": "",
+            "name": "niina",
+            "visits": ""
+        },
+        "niki": {
+            "lastvisit": "",
+            "name": "niki",
+            "visits": ""
+        },
+        "otto": {
+            "lastvisit": "",
+            "name": "otto",
+            "visits": ""
+        },
+        "pedro": {
+            "lastvisit": "",
+            "name": "pedro",
+            "visits": ""
+        },
+        "saku": {
+            "lastvisit": "",
+            "name": "saku",
+            "visits": ""
+        },
+        "wilma": {
+            "lastvisit": "",
+            "name": "wilma",
+            "visits": ""
+        }
+    }
+}

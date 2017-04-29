@@ -69,16 +69,16 @@
     }
 
     function store() {
-      var valuesJson = [];
+      var valuesJson = { items : [] };
       $('input[type=checkbox]').each(function () {
         var item = {};
         item.id = this.id;
         item.value = (this.checked ? "true" : "false");
-        valuesJson.push(item);
-
+        valuesJson.items.push(item);
       });
       var http = new XMLHttpRequest();
-      http.open("POST", functionsUrl + "/store");
+      console.log("send ", functionsUrl + "/store/?user=" + $('#user').val());
+      http.open("POST", functionsUrl + "/store/?user=" + $('#user').val());
 
       http.setRequestHeader("Content-type", "text/plain");
 
@@ -106,7 +106,7 @@
         // synchronize the object with a three-way data binding
         // click on `index.html` above to see it used in the DOM!
         syncObject.$bindTo($scope, "data");
-        console.log("InventoryCtrl found", syncObject, counters);
+        console.log("InventoryCtrl found", syncObject);
         $scope.counters = counters;
       });
 
@@ -150,7 +150,7 @@
 
   <div id="usercontent" ng-controller="UserCtrl" ng-show="data" class="ng-cloak">
     <label>Kuittaaja</label>
-    <select name="singleSelect">
+    <select name="singleSelect" id="user">
          <option ng-repeat="user in data" value="{{ user.name }}">{{user.name}}</option>
     </select>
   </div>
@@ -158,13 +158,13 @@
   <div id="inventorycontent" ng-controller="InventoryCtrl" ng-show="data" class="ng-cloak">
     <table class="table table-striped">
       <th>Elintarvikkeet</th>
-      <th class="text-right"><span id="foodcounter" class="label">{{ counters.foodcounter }}</span></th>
+      <th class="text-right"><!-- span id="foodcounter" class="label">{{ counters.foodcounter }}</span --></th>
       <tr ng-repeat="item in data.food | orderBy:'name'">
         <td>{{ item.name }} </td>
         <td class="text-right"><input id="{{ item.uuid }}" type="checkbox" ng-click="" /> </td>
       </tr>
       <th>Perustarvikkeet</th>
-      <th class="text-right"><span id="suppliescounter" class="label">{{ counters.suppliescounter }}</span></th>
+      <th class="text-right"><!-- span id="suppliescounter" class="label">{{ counters.suppliescounter }}</span --></th>
       <tr ng-repeat="item in data.supplies | orderBy:'name'">
         <td> {{ item.name }} </td>
         <td class="text-right"><input id="{{ item.uuid }}" type="checkbox" ng-click="" /> </td>
@@ -176,14 +176,14 @@
 
   </div>
   <div id="statuscontent" ng-controller="StatusCtrl" ng-show="data" class="ng-cloak">
-    <table class="table table-striped">
-      <th>Edelliset kuittaukset</th>
-      <th class="text-right"><span id="checkouts" class="label"></span></th>
-       <tr ng-repeat="item in data">
-        <td>{{ item }} </td>
-        <td class="text-right">{{ item.value }}</td>
-      </tr> 
-    </table>
+
+       <table class="table table-striped" ng-repeat="status in data">
+         <th>{{ status.user }}<th>{{ status.timestamp | date:'dd.MM.yyyy'}}</th>
+         <tr ng-repeat="item in status.items | filter:">
+          <td>{{item.id}}</td>
+          <td>{{item.value}}</td>
+        </tr>
+       </table>
     </div>
   </body>
 
