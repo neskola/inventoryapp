@@ -69,7 +69,8 @@
     }
 
     function store() {
-      var valuesJson = { items : [] };
+      $('#storeprogress').css('display', 'block');
+      var valuesJson = { items: [] };
       $('input[type=checkbox]').each(function () {
         var item = {};
         item.id = this.id;
@@ -87,6 +88,9 @@
           console.log("response ok", http.status);
         } else {
           console.error("response status", http.status);
+        }
+        if (http.readyState == 4) {
+          $('#storeprogress').css('display', 'none');
         }
       }
       http.send(JSON.stringify(valuesJson));
@@ -109,6 +113,10 @@
         console.log("InventoryCtrl found", syncObject);
         $scope.counters = counters;
       });
+
+      app.controller('DateCtrl', ['$scope', function ($scope) {
+        $scope.date = new Date();
+      }]);
 
       app.controller("StatusCtrl", function ($scope, $firebaseObject) {
         var ref = firebase.database().ref().child("status/");
@@ -145,6 +153,7 @@
         console.error(e);
         //document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
       }
+
     });
   </script>
 
@@ -153,38 +162,49 @@
     <select name="singleSelect" id="user">
          <option ng-repeat="user in data" value="{{ user.name }}">{{user.name}}</option>
     </select>
+    <div ng-controller="DateCtrl">
+      {{date | date:'yyyy-MM-dd'}}
+    </div>
   </div>
-
-  <div id="inventorycontent" ng-controller="InventoryCtrl" ng-show="data" class="ng-cloak">
+ <div id="inventorycontent" ng-controller="InventoryCtrl" ng-show="data" class="ng-cloak">
     <table class="table table-striped">
       <th>Elintarvikkeet</th>
-      <th class="text-right"><!-- span id="foodcounter" class="label">{{ counters.foodcounter }}</span --></th>
+      <th class="text-right">
+        <!-- span id="foodcounter" class="label">{{ counters.foodcounter }}</span -->
+      </th>
       <tr ng-repeat="item in data.food | orderBy:'name'">
         <td>{{ item.name }} </td>
         <td class="text-right"><input id="{{ item.uuid }}" type="checkbox" ng-click="" /> </td>
       </tr>
       <th>Perustarvikkeet</th>
-      <th class="text-right"><!-- span id="suppliescounter" class="label">{{ counters.suppliescounter }}</span --></th>
-      <tr ng-repeat="item in data.supplies | orderBy:'name'">
+      <th class="text-right">
+        <!-- span id="suppliescounter" class="label">{{ counters.suppliescounter }}</span -->
+      </th>
+      <tr id="supplieslist" ng-repeat="item in data.supplies | orderBy:'name'">
         <td> {{ item.name }} </td>
         <td class="text-right"><input id="{{ item.uuid }}" type="checkbox" ng-click="" /> </td>
       </tr>
     </table>
     <div>
-      <button type="button" onclick="store()" class="btn btn-info">Tallenna</input>
+      <button type="button" onclick="store()" class="btn btn-info">Tallenna</button>
     </div>
-
+    <div class="progress" id="storeprogress" style="display : none;">
+      <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
+        style="width: 100%">
+      </div>
+    </div>
   </div>
   <div id="statuscontent" ng-controller="StatusCtrl" ng-show="data" class="ng-cloak">
 
-       <table class="table table-striped" ng-repeat="status in data">
-         <th>{{ status.user }}<th>{{ status.timestamp | date:'dd.MM.yyyy'}}</th>
-         <tr ng-repeat="item in status.items | filter:">
+    <table class="table table-striped" ng-repeat="status in data">
+      <th>{{ status.user }}
+        <th>{{ status.timestamp | date:'dd.MM.yyyy'}}</th>
+        <tr ng-repeat="item in status.items | filter : item.value === true">
           <td>{{item.id}}</td>
-          <td>{{item.value}}</td>
+          <td>Tuo</td>
         </tr>
-       </table>
-    </div>
-  </body>
+    </table>
+  </div>
+</body>
 
 </html>
